@@ -15,28 +15,28 @@
 let btn = document.querySelector('.btn-success');
 let square = document.querySelector('#square');
 let parentSquare = document.querySelector('#exercise'); 
+
 let parentSquareHeight = 0;
 let parentSquareWidth = 0;
 let squarePositionX = 0;
 let squarePositionY = 0;
+let parentSquareOffset = 0;
 
-parentSquare.addEventListener('click', function(parentSquare){   
+parentSquare.addEventListener('click', function(parentSquare){       
+     
+    parentSquareOffset = parentSquare.target.offsetLeft;
+
+    parentSquareHeight = parentSquare.path[1].offsetHeight - square.offsetHeight - parentSquareOffset  ;
+
+    parentSquareWidth = parentSquare.path[1].offsetWidth -  square.offsetWidth - parentSquareOffset ;
     
-    console.log(parentSquare); 
-    parentSquareHeight = parentSquare.path[1].offsetHeight - square.offsetHeight - 15  ;
-    parentSquareWidth = parentSquare.path[1].offsetWidth -  square.offsetWidth - 15 ;
-    console.log("parentSquareHeight ",parentSquareHeight); 
-    console.log("parentSquareWidth ",parentSquareWidth); 
     
 })
 
 square.addEventListener("click", function (square) {
     squarePositionX = square.target.offsetLeft;
     squarePositionY = square.target.offsetTop;
-    console.log("square ",square.target.offsetTop)
-    console.log("square ",square.target.offsetLeft)
-    console.log(square)
-
+    
 })
 
 btn.addEventListener("click", function () {
@@ -50,17 +50,16 @@ function transform(elem) {
 
     let left = squarePositionX;
     let top = squarePositionY;
-    console.log("squarePositionX ",squarePositionX)
-    console.log("squarePositionY ",squarePositionY)
-    console.log("parentSquareWidth ",parentSquareWidth)
-    console.log("parentSquareHeight ",parentSquareHeight)
+    
     function size() {
         left+= (parentSquareWidth / parentSquareHeight);
         top++;
+
         elem.style.top = top + 'px';
         elem.style.left = left + 'px';
         console.log("top: ", elem.style.top)
         console.log("left: ", elem.style.left)
+
         if (left == parentSquareWidth) {
             clearInterval(Interval);
         }
@@ -68,5 +67,6 @@ function transform(elem) {
             clearInterval(Interval)
         }
     }
+    
     let Interval = setInterval(size, 10);
 }
