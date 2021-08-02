@@ -1,55 +1,72 @@
-$(function () {
-    $(".btn-success").click(function () {
-        $("#square").animate(
-            {
-                bottom: '-10px' , 
-                right: '-10px'
+// $(function () {
+//     $(".btn-success").click(function () {
+//         $("#square").animate(
+//             {
+//                 bottom: '-10px' , 
+//                 right: '-10px'
 
-            }
-        );
-    })
+//             }
+//         );
+//     })
+// })
+
+
+
+let btn = document.querySelector('.btn-success');
+let square = document.querySelector('#square');
+let parentSquare = document.querySelector('#exercise'); 
+let parentSquareHeight = 0;
+let parentSquareWidth = 0;
+let squarePositionX = 0;
+let squarePositionY = 0;
+
+parentSquare.addEventListener('click', function(parentSquare){   
+    
+    console.log(parentSquare); 
+    parentSquareHeight = parentSquare.path[1].offsetHeight - square.offsetHeight - 15  ;
+    parentSquareWidth = parentSquare.path[1].offsetWidth -  square.offsetWidth - 15 ;
+    console.log("parentSquareHeight ",parentSquareHeight); 
+    console.log("parentSquareWidth ",parentSquareWidth); 
+    
+})
+
+square.addEventListener("click", function (square) {
+    squarePositionX = square.target.offsetLeft;
+    squarePositionY = square.target.offsetTop;
+    console.log("square ",square.target.offsetTop)
+    console.log("square ",square.target.offsetLeft)
+    console.log(square)
+
+})
+
+btn.addEventListener("click", function () {
+    
+    transform(square);
+
 })
 
 
+function transform(elem) {
 
-// let btn = document.querySelector('.btn-success');
-// let square = document.querySelector('#square');
-// let parent = document.querySelector('#exercise'); 
-// let parentHeight = 0;
-// let parentWidth = 0;
-// let squarePositionX = 0;
-// let squarePositionY = 0;
-
-// parent.addEventListener('click', function(event){    
-//     parentHeight += event.target.offsetHeight;
-//     parentWidth += event.target.offsetWidth;
-// })
-
-// square.addEventListener("click", function (event) {
-    
-//     console.log(event)
-
-// })
-
-// btn.addEventListener("click", function () {
-    
-//     transform(square);
-
-// })
-
-
-// function transform(elem) {
-
-//     let left = 0;
-//     let top = 0;
-//     function size() {
-//         left++;
-//         top++;
-//         elem.style.left = left + 'px';
-//         elem.style.top = top + 'px';
-//         if (left == parentWidth) {
-//             clearInterval(Interval);
-//         }
-//     }
-//     let Interval = setInterval(size, 5);
-// }
+    let left = squarePositionX;
+    let top = squarePositionY;
+    console.log("squarePositionX ",squarePositionX)
+    console.log("squarePositionY ",squarePositionY)
+    console.log("parentSquareWidth ",parentSquareWidth)
+    console.log("parentSquareHeight ",parentSquareHeight)
+    function size() {
+        left+= (parentSquareWidth / parentSquareHeight);
+        top++;
+        elem.style.top = top + 'px';
+        elem.style.left = left + 'px';
+        console.log("top: ", elem.style.top)
+        console.log("left: ", elem.style.left)
+        if (left == parentSquareWidth) {
+            clearInterval(Interval);
+        }
+        else if(top == parentSquareHeight) {
+            clearInterval(Interval)
+        }
+    }
+    let Interval = setInterval(size, 10);
+}
