@@ -60,11 +60,8 @@ function transform(elem) {
         console.log("top: ", elem.style.top)
         console.log("left: ", elem.style.left)
 
-        if (left == parentSquareWidth) {
+        if (left == parentSquareWidth && top == parentSquareHeight) {
             clearInterval(Interval);
-        }
-        else if(top == parentSquareHeight) {
-            clearInterval(Interval)
         }
     }
     
