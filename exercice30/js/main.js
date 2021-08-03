@@ -6,10 +6,12 @@
 //     })
 // })
 
+document.addEventListener("DOMContentLoaded", function () {
+    let formInput = document.querySelector(".form-control");
+    formInput.addEventListener("keyup", function () {
+        if (formInput.value.length > 5 || formInput.classList.contains("is-invalid")) {
+            formInput.classList.add("is-valid")
+        }
+    })
 
-let formInput = document.querySelector(".form-control");
-formInput.addEventListener("keyup", function() {
-    if(formInput.value.length > 5 || formInput.classList.contains("is-invalid")){
-        formInput.classList.add("is-valid")
-    }
-})
+});

@@ -4,6 +4,7 @@
 //     })
 // })
 
+document.addEventListener("DOMContentLoaded",function() {
 
 let btn = document.querySelector(".btn-success");
 let formInput = document.querySelector(".form-control");
@@ -11,3 +12,5 @@ let formInput = document.querySelector(".form-control");
 btn.addEventListener("click", function() {
     formInput.classList.add("is-valid");
 })
+
+});

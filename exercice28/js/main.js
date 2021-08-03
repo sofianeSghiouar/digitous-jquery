@@ -3,11 +3,12 @@
 //         console.log($(".form-control").val())
 //     })
 // })
+document.addEventListener("DOMContentLoaded", function () {
 
+    let btn = document.querySelector(".btn-success");
+    let formInput = document.querySelector(".form-control");
 
-let btn = document.querySelector(".btn-success");
-let formInput = document.querySelector(".form-control");
-
-btn.addEventListener("click", function() {
-    console.log(formInput.value);
-})
+    btn.addEventListener("click", function () {
+        console.log(formInput.value);
+    })
+});
