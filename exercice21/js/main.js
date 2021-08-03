@@ -8,20 +8,22 @@
 //     })
 // })
 
-let btn = document.querySelector('.btn-success');
-let square = document.querySelector('#square');
-btn.addEventListener("click", function () {
-    move(square);
-})
+document.addEventListener("DOMContentLoaded", function () {
+    let btn = document.querySelector('.btn-success');
+    let square = document.querySelector('#square');
+    btn.addEventListener("click", function () {
+        move(square);
+    });
 
-function move(elem) {
-    let width = 150;
-    function size() {
-        width++;
-        elem.style.width = width + 'px';
-        if (width == 500) {
-            clearInterval(Interval);
+    function move(elem) {
+        let width = 150;
+        function size() {
+            width++;
+            elem.style.width = width + 'px';
+            if (width == 500) {
+                clearInterval(Interval);
+            }
         }
+        let Interval = setInterval(size, 5);
     }
-    let Interval = setInterval(size, 5);
-}
+});

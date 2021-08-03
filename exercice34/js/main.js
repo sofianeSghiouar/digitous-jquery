@@ -16,7 +16,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    let btn = document.querySelector(".btn-success");
+    let btn = document.querySelector("#exercise button.btn.btn-success");
 
     btn.addEventListener("click", function () {
         let request = new XMLHttpRequest();
