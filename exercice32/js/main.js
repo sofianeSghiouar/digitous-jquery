@@ -11,16 +11,26 @@
 // })
 
 
+
 let btn = document.querySelector(".btn-success");
-btn.addEventListener("click", function() {
-    fetch("https://restcountries.eu/rest/v2/name/france").then(function(err,res) {
-    if(err){
-        console.log("error", err);
-    }
-        console.log(JSON.parse(res)[0].name)
-        
-        
-        // console.log(JSON.parse(body)[0].name);
-        // console.log(JSON.parse(body)[0].capital);
-    })
-})
+
+btn.addEventListener("click", function () {
+    var request = new XMLHttpRequest();
+
+    request.open('GET', 'https://restcountries.eu/rest/v2/name/france', true);
+    request.onload = function () {
+        if (this.status >= 200 && this.status < 400) {
+            let data = JSON.parse(this.response)
+            console.log(data[0].name);
+            console.log(data[0].capital);
+        } else {
+            console.log('error return information')
+        }
+    };
+    request.onerror = function () {
+        console.log('error connection')
+    };
+
+    request.send();
+});
+
