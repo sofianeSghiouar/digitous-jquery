@@ -17,7 +17,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     let btn = document.querySelector("#exercise button.btn.btn-success");
-
+    let country = document.querySelector("#country");
+    let capital = document.querySelector("#capital");
     btn.addEventListener("click", function () {
         let request = new XMLHttpRequest();
         let inputValue = $(".form-control").val();
@@ -26,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
         request.open('GET', 'https://restcountries.eu/rest/v2/name/' + inputValue, true);
         request.onload = function () {
             if (this.status >= 200 && this.status < 400) {
-                let data = JSON.parse(this.response)
-                $("#country").html(data[0].name);
-                $("#capital").html(data[0].capital);
+                let data = JSON.parse(this.response)                
+                country.innerText = data[0].name;
+                capital.innerText = data[0].capital;
             } else {
                 console.log('error return information')
             }
